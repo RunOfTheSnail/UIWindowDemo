@@ -45,7 +45,7 @@
 
 - (void)clickMyTempBtn:(UIButton *)sender
 {
-    NSLog(@"3当前所有的window %@",[UIApplication sharedApplication].windows);
+    NSLog(@"查看3 %@",[UIApplication sharedApplication].windows);
 }
 
 
