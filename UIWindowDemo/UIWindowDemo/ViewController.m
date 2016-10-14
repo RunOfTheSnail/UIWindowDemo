@@ -13,6 +13,7 @@
 
 @interface ViewController ()
 @property(nonatomic,strong)UIWindow *myWindow1;
+@property(nonatomic,strong)UIWindow *myWindow2;
 @property(nonatomic,strong)MyWindow1 *myWindow;
 @end
 
@@ -32,10 +33,10 @@
     [self.view addSubview:tempBtn];
     
     
-    
+    // 这个是配合着test6来测试的，查看windows数组的情况
     UIButton *myTempBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [myTempBtn setTitle:@"再点我" forState:UIControlStateNormal];
-    myTempBtn.frame = CGRectMake(100, 300, 100, 100);
+    [myTempBtn setTitle:@"再点我，测试test2" forState:UIControlStateNormal];
+    myTempBtn.frame = CGRectMake(100, 300, 300, 100);
     myTempBtn.backgroundColor = [UIColor greenColor];
     [myTempBtn addTarget:self action:@selector(clickMyTempBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:myTempBtn];
@@ -55,7 +56,7 @@
     app.window.alpha = 0.3;
     
     // 可以显示创建的window
-    [self test1];
+//    [self test1];
     
     // 不能正常显示创建的window
 //    [self test2];
@@ -70,7 +71,12 @@
 //    [self test5];
     
     
-    NSLog(@"2当前所有的window %@",[UIApplication sharedApplication].windows);
+//    NSLog(@"2当前所有的window %@",[UIApplication sharedApplication].windows);
+    
+    
+    
+    // 测试创建的window和[UIApplication sharedApplication].windows的关系,和上面的测试没有关系，上面代码需要全部注释掉
+    [self test6];
     
 }
 
@@ -124,6 +130,19 @@
     
     [window show];
 
+}
+
+// 测试创建的window和[UIApplication sharedApplication].windows的关系
+- (void)test6
+{
+    self.myWindow2 = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.myWindow2.backgroundColor = [UIColor greenColor];
+    self.myWindow2.windowLevel = 100;
+    self.myWindow2.hidden = NO;
+    [self.myWindow2 makeKeyWindow];
+    NSLog(@"查看1   %@",[UIApplication sharedApplication].windows);
+    self.myWindow2 = nil;
+    NSLog(@"查看2   %@",[UIApplication sharedApplication].windows);
 }
 
 
